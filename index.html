@@ -10,41 +10,65 @@
 <body>
     <header>Web Quiz About Things</header>
 
+    
     <main>
+
+        <div class="timerTopRight">
+            <h1 id="timerTopRight">Time Remaining:</h1>
+            <h1><a href="#scorecard">Highscore Page</a></h1>
+        </div>
+        
 
         <h1 id="introPage" class="introHeader"></h1>
 
-        <div class="introPararaph">
+        <div class="introParagraph">
 
-            <p>Hi! Welcome to my quiz. The goal is to finish the quiz with as much time left on the clock as possible, but be careful!<br> Every time you answer a question incorrectly, the timer will take 5 seconds off your total time left! So choose wisely! <br> Good Luck</p>
+            <p>Hi! Welcome to my quiz. The goal is to finish the quiz with as much time left on the clock as possible, but be careful!<br> Every time you answer a question incorrectly, the timer will take 5 seconds off your total time left, So choose wisely! <br> Good Luck</p>
 
         </div>
         
-        <div id="mainpageButton"class="mainpageButton">
+        <div>
 
-            <button id="letsgoButton" >Lets Go!</button>
+            <button class="mainpageButton">Lets Go!</button>
 
         </div>
 
-        <div hidden id="questionpages" class="question-container">
+       
 
-            <h2 id="questionTitles" class="questionHeader"></h2>
+        <div hidden class="question-container">
 
-            <div id="questionbuttoncolumn">
+            <h2 class="questionTitles"></h2>
 
-                <button id="answer1" class="questionButtons"></button>
-                <button id="answer2" class="questionButtons"></button>
-                <button id="answer3" class="questionButtons"></button>
-                <button id="answer4" class="questionButtons"></button>
+            <div class="questionbuttonflexcolumn">
+
+                <button id="answer1" class="answerButtons"></button>
+                <button id="answer2" class="answerButtons"></button>
+                <button id="answer3" class="answerButtons"></button>
+                <button id="answer4" class="answerButtons"></button>
 
             </div>
 
 
         </div>
 
+        <div hidden class="scorePageContainer">
+
+            <div id="scorecard" class="scorecard">
+
+                <h3 class="scorecardHeader">Scorecard:</h3>
+                
+                <p id="scorecardName">Name: </p>
+                <p id="highscore"> Highscore: </p>
 
 
 
+            </div>
+
+
+
+
+
+        </div>
 
 
     </main>
