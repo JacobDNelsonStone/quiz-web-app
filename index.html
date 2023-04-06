@@ -18,33 +18,36 @@
             <h1><a href="#scorecard">Highscore Page</a></h1>
         </div>
         
+        <div id="introPage">
+            <h1 class="introHeader"></h1>
 
-        <h1 id="introPage" class="introHeader"></h1>
+            <div class="introParagraph">
 
-        <div class="introParagraph">
+                <p>Hi! Welcome to my quiz. The goal is to finish the quiz with as much time left on the clock as possible, but be careful!<br> Every time you answer a question incorrectly, the timer will take 5 seconds off your total time left, So choose wisely! <br> Good Luck</p>
 
-            <p>Hi! Welcome to my quiz. The goal is to finish the quiz with as much time left on the clock as possible, but be careful!<br> Every time you answer a question incorrectly, the timer will take 5 seconds off your total time left, So choose wisely! <br> Good Luck</p>
+            </div>
 
-        </div>
+            <div>
+    
+                <button class="mainpageButton">Lets Go!</button>
+    
+            </div>
+            
+        </div>    
         
-        <div>
-
-            <button class="mainpageButton">Lets Go!</button>
-
-        </div>
 
        
 
-        <div hidden class="question-container">
+        <div id="question-container" class="question-container" >
 
-            <h2 class="questionTitles"></h2>
+            <h2 class="questionTitles">question1title</h2>
 
             <div class="questionbuttonflexcolumn">
 
-                <button id="answer1" class="answerButtons"></button>
-                <button id="answer2" class="answerButtons"></button>
-                <button id="answer3" class="answerButtons"></button>
-                <button id="answer4" class="answerButtons"></button>
+                <button id="answer1" class="answerButtons">button1</button>
+                <button id="answer2" class="answerButtons">button2</button>
+                <button id="answer3" class="answerButtons">button3</button>
+                <button id="answer4" class="answerButtons">button4</button>
 
             </div>
 
@@ -55,11 +58,12 @@
 
             <div id="scorecard" class="scorecard">
 
-                <h3 class="scorecardHeader">Scorecard:</h3>
+                <h3 class="scorecardHeader"></h3>
                 
-                <p id="scorecardName">Name: </p>
-                <p id="highscore"> Highscore: </p>
+                <p id="scorecardName"></p>
+                <p id="highscore"></p>
 
+                <button id="returnToIntroPageButton" class="mainpageButton">Return to Main Menu</button>
 
 
             </div>
