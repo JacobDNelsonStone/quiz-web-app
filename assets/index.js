@@ -22,7 +22,7 @@ var maxTime = 10
 var timeLeft = document.querySelector("#timerTopRight");
 var introPage = document.getElementById("#introPage");
 var letsGoButton = document.querySelector(".mainpageButton");
-var questionPages = document.getElementsByClassName(".question-container");
+var questionPages = document.querySelector(".question-container");
 var questionNames = document.querySelector(".questionTitles");
 var answerButton1 = document.querySelector("#answer1");
 var answerButton2 = document.querySelector("#answer2");
@@ -102,8 +102,7 @@ function hideQuestions() {
 function showQuestion() {
     if( questionPages.visibility = true) {
         console.log("its hidden")
-    }
-    
+    } questionPages.removeAttribute("class", "hidden");
 }
 
 function validateAnswer() {
