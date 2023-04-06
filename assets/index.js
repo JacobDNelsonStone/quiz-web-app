@@ -14,13 +14,18 @@
             if else statement
             if correct, run showQuestion()
             else, decrement timer
-        
-        function 
+            
+            function 
+            
+            */
 
-*/
-var maxTime = 10
+var savedScores 
+var questionCounter = 0
+var score = 0
+var maxTime = 20
+var timer  
 var timeLeft = document.querySelector("#timerTopRight");
-var introPage = document.getElementById("#introPage");
+var introPage = document.querySelector(".introPage");
 var letsGoButton = document.querySelector(".mainpageButton");
 var questionPages = document.querySelector(".question-container");
 var questionNames = document.querySelector(".questionTitles");
@@ -33,19 +38,133 @@ var scorecardHeader = document.querySelector(".scorecardHeader");
 var scorecardName = document.querySelector("#scorecardName");
 var highscore = document.querySelector("#highscore");
 var allAnswerButtons = document.querySelector(".answerButtons");
-var ListOfanswers
+var questionbuttontext = document.querySelector('.questionbuttonflexcolumn');
+var returntoMainPageButton = document.querySelector('#returnToIntroPageButton');
+var answerValue
+var lastQuestion
 
-var ListOfanswers = [
+var listOfQuestionsAndAnswers = [
+    {
+        question: `Who is the actor with the most 'Best Actor' awards at the Oscars?`,
+        answers: [
+            "Daniel Day Lewis", 
+            "Joaquin Phoenix", 
+            "Matthew McConaughey", 
+            "Anthony Hopkins"
+        ],
+        correct: "Daniel Day Lewis"
+    }, 
+
+    {
+        question: `What film is currently the most awarded film of all time?`,
+        answers: [
+            "LOTR: Return of the King",
+            "Everything Everywhere All At Once",
+            "Titanic",
+            "Ben-Hur"
+        ],
+        correct: "Everything Everywhere All At Once"
+
+    },
+
+    {
+        question: `Who is the cinematographer for the film "No Country for Old Men?`,
+        answers: [
+            "Emmanuel Lubezki",
+            "Rodrigo Prieto",
+            "Robert Richardson",
+            "Roger Deakins"
+        ],
+        correct: "Roger Deakins"
+    },
+
+    {
+        question: `When did the christmas classic "It's A Wonderful Life" come out?`,
+        answers: [
+            "1948",
+            "1946",
+            "1951",
+            "1944"
+        ],
+        correct: "1946"
+    },
+
+    {
+        question: `In the film "Prisoners", who plays detective Loki?`,
+        answers: [
+            "Jake Gyllenhaal",
+            "Paul Dano",
+            "Ethan Hawke",
+            "Ben Affleck"
+        ],
+        correct: "Jake Gyllenhaal"
+    }
+]
+
+questionbuttontext.addEventListener('click', function(event) {
+    if( event.target.matches( '.answerButtons' )) {
+        answerValue = event.target.innerText
+        console.log(answerValue);
+        validateAnswer();
+    }
+})
+
+function validateAnswer(event) {
+    lastQuestion = questionCounter-1;
+    if( answerValue == listOfQuestionsAndAnswers[lastQuestion].correct ) {
+        score = score+5;
+        console.log(score);
+    } else { 
+        maxTime = maxTime-5;
+    }
+    if( questionCounter != listOfQuestionsAndAnswers.length ) {
+        
+        buildQuestion()
+    } else {
+        clearInterval(timer);
+        showScorecardPage()
+        savedScores = score
+    }
+}
+
+
+function buildQuestion(){
+    
+    questionNames.textContent = listOfQuestionsAndAnswers[questionCounter].question;
+    answerButton1.textContent = listOfQuestionsAndAnswers[questionCounter].answers[0];
+    answerButton2.textContent = listOfQuestionsAndAnswers[questionCounter].answers[1];
+    answerButton3.textContent = listOfQuestionsAndAnswers[questionCounter].answers[2];
+    answerButton4.textContent = listOfQuestionsAndAnswers[questionCounter].answers[3];
+    
+    questionCounter = questionCounter+1
+    //for( var i = 0; i < currQuestion.answers.length; i++ ){
+        
+        // for the correct button, add a custom attr for that button
+        // append the button to the container
+   //}
+}
+
+
+
+/*var ListOfanswers = [
 
     question1answerset = {
 
         answerButton1: true,
 
+        answerButton1: textContent = 'Daniel Day Lewis',
+
         answerButton2: false,
+
+        answerButton2: textContent = 'Joaquin Phoenix',
 
         answerButton3: false,
 
-        answerButton4: false
+        answerButton3: textContent = 'Matthew McConaughey',
+
+        answerButton4: false,
+
+        answerButton4: textContent = 'Anthony Hopkins',
     },
 
     question2answerset = {
@@ -93,26 +212,45 @@ var ListOfanswers = [
     },
 
 ]
+*/
+
 
 function hideQuestions() {
     questionPages.setAttribute("class", "hidden");
 
 }
 
-function showQuestion() {
-    if( questionPages.visibility = true) {
-        console.log("its hidden")
-    } questionPages.removeAttribute("class", "hidden");
+function hideIntroPage() {
+    introPage.setAttribute('class', 'hidden');
+
 }
 
-function validateAnswer() {
-    if( answerButton1 === true ) [
+function hidescoreCardPage() {
+    scorecardPage.setAttribute("class", "hidden")
+}
 
-    ]
+function showScorecardPage() {
+    scorecardPage.removeAttribute('class', 'hidden')
+    hideQuestions()
+    var savedNames = prompt("Please enter a name for your score");
+    var savedScores = savedNames + ": " + savedScores;
+
+}
+//function populateQuestion1() {
+    //var question1 = questionNames.textContent = `Who is the actor with the most "Best Actor" awards at the Oscars?`;
+
+
+function showQuestion1() {
+    if( questionPages.class = 'hidden') {
+        console.log("its hidden")
+    } questionPages.removeAttribute("class", "hidden");
+    hideIntroPage();
+    buildQuestion();
+    
 }
 
 function startTimer() {
-    setInterval(function () {
+    timer = setInterval(function () {
         if (maxTime >= 0) {
           timeLeft.textContent = "Time Remaining: " + maxTime;
           maxTime--;
@@ -122,8 +260,8 @@ function startTimer() {
           
         } else {
           maxTime.textContent = '';
-          clearInterval(timeLeft);
-          loseGame();
+          clearInterval(timer);
+          loseQuiz();
         }
       }, 1000);
 }
@@ -131,11 +269,13 @@ function startTimer() {
 function startQuiz() {
     letsGoButton.addEventListener("click", function(event) {
         if( event.target.matches('.mainpageButton') ) {
-            showQuestion()
+            showQuestion1()
             startTimer()
         }
     }  
 )    
 }
+
+hidescoreCardPage()
 hideQuestions()
 startQuiz()

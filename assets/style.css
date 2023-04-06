@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Prompt', sans-serif;
     text-align: center;
     background-color: gainsboro;
 }
@@ -23,7 +23,7 @@ header {
 
 
 .questionHeader, .introHeader {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Prompt', sans-serif;
     font-weight: normal;
     font-size: xx-large;
     color: rgb(94, 41, 94);
@@ -35,7 +35,7 @@ header {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Prompt', sans-serif;
     font-weight: lighter;
     width: 100%;
     padding-left: 24px;
@@ -76,12 +76,12 @@ header {
 
 .introParagraph p {
     margin-top: 50px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Prompt', sans-serif;
     font-size: 24px;
 }
 
 .mainpageButton {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Prompt', sans-serif;
     margin-top: 50px;
     font-size: 28px;
     font-weight: bold;
@@ -90,8 +90,18 @@ header {
     border-radius: 24px;
 }
 
+.questionbuttonflexcolumn {
+    margin-top: 50px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+    padding-bottom: 75px;
+}
+
 .answerButtons {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Prompt', sans-serif;
     margin-top: 5px;
     font-size: 28px;
     font-weight: normal;
