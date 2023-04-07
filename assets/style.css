@@ -26,7 +26,7 @@ header {
     font-family: 'Prompt', sans-serif;
     font-weight: normal;
     font-size: xx-large;
-    color: rgb(94, 41, 94);
+    color: black;
 
 }
 
@@ -63,10 +63,30 @@ header {
     background-color: rgb(104, 39, 38);
     color: white;
     display: flex;
-    flex-direction: row;  
+    flex-direction: row;
+    width: 15%;
+    justify-content: space-evenly;
+}
+
+.timerTopRight h1 ~ p {
+    font-size: 20px;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-style: solid;
+    border-width: 5px;
+    border-color: rgb(45, 50, 117);
+    border-radius: 12px;
+    background-color: rgb(104, 39, 38);
+    color: white;
+    display: flex;
+    flex-direction: row; 
+
 }
 
 .timerTopRight h1 a {
+    text-align: right;
     text-decoration: none;
     color: white;
     background-color: rgb(104, 39, 38);
@@ -74,7 +94,7 @@ header {
     
 }
 
-.introParagraph p {
+.introParagraph p, .scorecard {
     margin-top: 50px;
     font-family: 'Prompt', sans-serif;
     font-size: 24px;
@@ -105,8 +125,8 @@ header {
     margin-top: 5px;
     font-size: 28px;
     font-weight: normal;
-    height: 100px;
-    width: 225px;
+    height: 150px;
+    width: 250px;
     border-radius: 20px;
 }
 

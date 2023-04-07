@@ -8,17 +8,19 @@
 
         function startTimer()
 
-        function showQuestion()
+        function buildQuestion()
 
         function validateAnswer()
             if else statement
-            if correct, run showQuestion()
+            if correct, run buildQuestion()
             else, decrement timer
             
-            function 
-            
-            */
+            function run buildquestion till all questions through
+        
 
+            
+*/
+var savedWinData = []
 var savedScores 
 var questionCounter = 0
 var score = 0
@@ -42,6 +44,12 @@ var questionbuttontext = document.querySelector('.questionbuttonflexcolumn');
 var returntoMainPageButton = document.querySelector('#returnToIntroPageButton');
 var answerValue
 var lastQuestion
+
+var headerScore = document.querySelector("p");
+
+function hideScore() {
+headerScore.setAttribute('class', 'hidden')
+}
 
 var listOfQuestionsAndAnswers = [
     {
@@ -109,11 +117,21 @@ questionbuttontext.addEventListener('click', function(event) {
     }
 })
 
+function showIntroPage() {
+    introPage.removeAttribute('class', 'hidden');
+}
+function loseQuiz(){
+    alert("You lost! Try again!");
+    location.reload();
+
+}
+
 function validateAnswer(event) {
     lastQuestion = questionCounter-1;
     if( answerValue == listOfQuestionsAndAnswers[lastQuestion].correct ) {
         score = score+5;
-        console.log(score);
+        headerScore.textContent = `Current Score ${score}`;
+
     } else { 
         maxTime = maxTime-5;
     }
@@ -233,8 +251,12 @@ function showScorecardPage() {
     scorecardPage.removeAttribute('class', 'hidden')
     hideQuestions()
     var savedNames = prompt("Please enter a name for your score");
-    var savedScores = savedNames + ": " + savedScores;
-
+    scorecardName.textContent = savedNames;
+    savedWinData.push(savedNames);
+    highscore.textContent = score;
+    savedWinData.push(score);
+    window.localStorage.setItem('High Score', JSON.stringify(savedWinData));
+    console.log(localStorage.getItem('High Score'));
 }
 //function populateQuestion1() {
     //var question1 = questionNames.textContent = `Who is the actor with the most "Best Actor" awards at the Oscars?`;
@@ -271,11 +293,20 @@ function startQuiz() {
         if( event.target.matches('.mainpageButton') ) {
             showQuestion1()
             startTimer()
+            headerScore.removeAttribute('class', 'hidden')
+            headerScore.textContent = `Current Score ${score}`;
         }
     }  
 )    
 }
 
+returntoMainPageButton.addEventListener('click', function(event){
+    if( event.target.matches( '#returnToIntroPageButton' )) {
+        location.reload();
+    }    
+})
+
+hideScore()
 hidescoreCardPage()
 hideQuestions()
 startQuiz()
