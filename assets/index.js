@@ -17,15 +17,24 @@
             
             function run buildquestion till all questions through
         
+        function to show a win screen/scorepage
+        function to build a highscore page,
+        function for if they run out of time to boot them back to the main page
+        function to save scores and name pairs to local storage
+        
 
             
 */
-var savedWinData = []
-var savedScores 
+var JSONarray = []
+var savedScores = []
+var savedNames = []
 var questionCounter = 0
 var score = 0
 var maxTime = 20
 var timer  
+
+var totalhighscores = document.querySelector('#totalhighscores');
+
 var timeLeft = document.querySelector("#timerTopRight");
 var introPage = document.querySelector(".introPage");
 var letsGoButton = document.querySelector(".mainpageButton");
@@ -42,6 +51,7 @@ var highscore = document.querySelector("#highscore");
 var allAnswerButtons = document.querySelector(".answerButtons");
 var questionbuttontext = document.querySelector('.questionbuttonflexcolumn');
 var returntoMainPageButton = document.querySelector('#returnToIntroPageButton');
+var highscorePageLink = document.body.querySelector('a');
 var answerValue
 var lastQuestion
 
@@ -141,7 +151,9 @@ function validateAnswer(event) {
     } else {
         clearInterval(timer);
         showScorecardPage()
-        savedScores = score
+        WinGameScorecard()
+        //scorecardInfo()
+        //savedScores = score;
     }
 }
 
@@ -157,8 +169,6 @@ function buildQuestion(){
     questionCounter = questionCounter+1
     //for( var i = 0; i < currQuestion.answers.length; i++ ){
         
-        // for the correct button, add a custom attr for that button
-        // append the button to the container
    //}
 }
 
@@ -247,16 +257,60 @@ function hidescoreCardPage() {
     scorecardPage.setAttribute("class", "hidden")
 }
 
+function WinGameScorecard(){
+    var namePrompt = prompt("Please enter a name for your score");
+    //savedNames.push(namePrompt);
+    JSONarray = JSON.parse(localStorage.getItem('high scores'));
+    if(JSONarray == null) {
+        JSONarray = []
+    }
+    var object = { name: namePrompt, score: score }
+    JSONarray.push(object);
+    console.log(JSONarray);
+    scorecardName.textContent = object.name;
+    //var score = savedScores;
+    //savedScores.push(score);
+    //console.log(savedScores)
+    highscore.textContent = object.score;
+    //var savedWinData = savedNames + savedScores;
+    localStorage.setItem('high scores', JSON.stringify(JSONarray));
+    //localStorage.getItem('array', JSON.parse(JSONarray));
+}
+
+
+
 function showScorecardPage() {
     scorecardPage.removeAttribute('class', 'hidden')
     hideQuestions()
-    var savedNames = prompt("Please enter a name for your score");
-    scorecardName.textContent = savedNames;
+    hideIntroPage()
+    
+    /*var namePrompt = prompt("Please enter a name for your score");
+    savedNames.push(namePrompt);
+    scorecardName.textContent = namePrompt;
     savedWinData.push(savedNames);
     highscore.textContent = score;
     savedWinData.push(score);
-    window.localStorage.setItem('High Score', JSON.stringify(savedWinData));
-    console.log(localStorage.getItem('High Score'));
+    window.localStorage.setItem('User High Score', JSON.stringify(savedWinData));
+    console.log(localStorage.getItem('User High Score'));
+    */
+}
+
+function highscorePageInfo(){
+    //showScorecardPage()
+    JSONarray = JSON.parse(localStorage.getItem('high scores'));
+    totalhighscores.innerHTML = "";
+    for(var i = 0; i < JSONarray.length; i++ ) {
+        console.log(JSONarray);
+        var previoushighscores = document.createElement('ul');
+        var previoushighscoresLi = document.createElement('li');
+        var previoushighscoresnameLi = document.createElement('li');
+        previoushighscoresnameLi.textContent = JSONarray[i].name;
+        previoushighscoresLi.textContent = JSONarray[i].score;
+        totalhighscores.appendChild(previoushighscores);
+        previoushighscores.appendChild(previoushighscoresnameLi);
+        previoushighscores.appendChild(previoushighscoresLi);
+    }
+    
 }
 //function populateQuestion1() {
     //var question1 = questionNames.textContent = `Who is the actor with the most "Best Actor" awards at the Oscars?`;
@@ -300,6 +354,7 @@ function startQuiz() {
 )    
 }
 
+
 returntoMainPageButton.addEventListener('click', function(event){
     if( event.target.matches( '#returnToIntroPageButton' )) {
         location.reload();
@@ -310,3 +365,10 @@ hideScore()
 hidescoreCardPage()
 hideQuestions()
 startQuiz()
+
+highscorePageLink.addEventListener('click', function(event){
+    if(event.target.matches( 'a' )) {
+        showScorecardPage();
+        highscorePageInfo();
+    }
+})
