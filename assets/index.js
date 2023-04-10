@@ -260,6 +260,7 @@ function hidescoreCardPage() {
 function WinGameScorecard(){
     var namePrompt = prompt("Please enter a name for your score");
     //savedNames.push(namePrompt);
+    scorecardHeader.textContent = 'Well Done, here is your final score! Click on the highscore page to see your other scores!';
     JSONarray = JSON.parse(localStorage.getItem('high scores'));
     if(JSONarray == null) {
         JSONarray = []
@@ -297,6 +298,7 @@ function showScorecardPage() {
 
 function highscorePageInfo(){
     //showScorecardPage()
+    scorecardHeader.textContent = 'Highscore Page!';
     JSONarray = JSON.parse(localStorage.getItem('high scores'));
     totalhighscores.innerHTML = "";
     for(var i = 0; i < JSONarray.length; i++ ) {
